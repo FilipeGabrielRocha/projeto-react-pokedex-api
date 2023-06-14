@@ -2,47 +2,52 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 async function gerandoPokemons() {
-  const limite = 10;
+  const maxPokemon = 10;
   const api = "https://pokeapi.co/api/v2/";
-  const response = await fetch(`${api}pokemon?limit=${limite}`);
+  const response = await fetch(`${api}pokemon?limit=${maxPokemon}`);
   const pokemons = await response.json();
   const nomesPokemons = pokemons.results.map((pokemon) => {
-    return {
-      nomePokemons: pokemon.name,
-    };
+    return pokemon.name;
   });
   return nomesPokemons;
 }
 
-async function detalhesPokemons(context) {
-  const nomePokemon = context;
-  const api = "https://pokeapi.co/api/v2/";
-  const response = await fetch(`${api}pokemon/${nomePokemon}/`);
-  console.log(nomePokemon);
-  // return await response.json()
-}
+// async function detalhesPokemons(context) {
+//   const api = "https://pokeapi.co/api/v2/";
+//   const nomesPokemons = context.map(pokemon => {
+//     return fetch(`${api}pokemon/${pokemon}/`)
+//   })
+//   // const response = ;
+//   console.log(await nomesPokemons);
+//   // return await response.json()
+// }
 
 export const PokemonsList = () => {
   const [pokemon, setPokemon] = useState({
-    testes: [],
+    nomesPokemons: [gerandoPokemons()],
     teste2: [],
   });
+
+  async function detalhesPokemons() {
+    const api = "https://pokeapi.co/api/v2/";
+    const nomesPokemons = pokemon.nomesPokemons.map((pokemon) => {
+      return `${api}pokemon/${pokemon}/`;
+    });
+    console.log(await nomesPokemons);
+  }
+
+  detalhesPokemons();
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await gerandoPokemons();
-      const pokemons = await detalhesPokemons(data);
+      // const pokemons = await detalhesPokemons(data);
 
-      // data.map(nomePokemon => {
-      //   console.log(nomePokemon.name);
-      // })
-
-      // console.log('data, ', data);
-      // console.log('pokemon, ', pokemons);
+      console.log("data, ", data);
 
       setPokemon({
-        testes: data,
-        teste2: pokemons,
+        nomesPokemons: data,
+        // teste2: pokemons,
       });
     };
 
