@@ -1,53 +1,52 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 async function gerandoPokemons() {
   const maxPokemon = 10;
   const api = "https://pokeapi.co/api/v2/";
   const response = await fetch(`${api}pokemon?limit=${maxPokemon}`);
   const pokemons = await response.json();
-  const nomesPokemons = pokemons.results.map((pokemon) => {
-    return pokemon.name;
+  const urlsPokemons = pokemons.results.map((pokemon) => {
+    return pokemon.url;
   });
-  return nomesPokemons;
+  console.log(urlsPokemons);
+  return urlsPokemons;
+}
+
+async function pegarPokemonDetalhes(id) {
+  const api = "https://pokeapi.co/api/v2/";
+  const response = await fetch(`${api}pokemon/${id}/`)
+  return await response.json()
 }
 
 // async function detalhesPokemons(context) {
-//   const api = "https://pokeapi.co/api/v2/";
-//   const nomesPokemons = context.map(pokemon => {
-//     return fetch(`${api}pokemon/${pokemon}/`)
-//   })
-//   // const response = ;
-//   console.log(await nomesPokemons);
-//   // return await response.json()
+//   const urlsPokemons = async () => {
+//     context.map(async (urlPokemon) => {
+//       const response = await fetch(urlPokemon.toString());
+//       return await response.json();
+//     });
+//   };
+//   return urlsPokemons();
 // }
 
 export const PokemonsList = () => {
   const [pokemon, setPokemon] = useState({
-    nomesPokemons: [gerandoPokemons()],
-    teste2: [],
+    urlsPokemons: [],
   });
 
-  async function detalhesPokemons() {
-    const api = "https://pokeapi.co/api/v2/";
-    const nomesPokemons = pokemon.nomesPokemons.map((pokemon) => {
-      return `${api}pokemon/${pokemon}/`;
-    });
-    console.log(await nomesPokemons);
-  }
-
-  detalhesPokemons();
+  const { id } = useParams()
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await gerandoPokemons();
-      // const pokemons = await detalhesPokemons(data);
+      const data2 = await pegarPokemonDetalhes(id)
+      console.log(data2);
+      // const data = await detalhesPokemons(detalhePokemon);
 
       console.log("data, ", data);
 
       setPokemon({
-        nomesPokemons: data,
-        // teste2: pokemons,
+        urlsPokemons: data,
       });
     };
 
@@ -72,11 +71,11 @@ export const PokemonsList = () => {
     <section>
       <h1>Lista de pokemons</h1>
       {/* <ul>
-        {pokemon.testes.map((teste, index) => {
+        {pokemon.urlsPokemons.map((teste, index) => {
           return (
             <li key={index}>
-              <Link to={teste.url}>
-                <p>{teste.name}</p>
+              <Link>
+                <p>{teste}</p>
               </Link>
             </li>
           );
