@@ -1,14 +1,15 @@
 import { createContext, useState } from "react";
 
 async function gerandoPokemons() {
-  const maxPokemon = 20;
+  const maxPokemon = 2;
   const api = "https://pokeapi.co/api/v2/";
   const response = await fetch(`${api}pokemon?limit=${maxPokemon}`);
   const pokemons = await response.json();
-  const urlsPokemons = pokemons.results.map((pokemon) => {
-    return pokemon.url;
-  });
-  return urlsPokemons;
+  return pokemons.results
+//   const urlsPokemons = pokemons.results.map((pokemon) => {
+//     return pokemon;
+//   });
+//   return urlsPokemons;
 }
 
 
@@ -18,7 +19,7 @@ export const nomesPokemons = [
 
 export const PokemonsContext = createContext([])
 
-export const PokemonList = (props) => {
+export const PokemonsUrls = (props) => {
     const [ pokemons, setPokemons ] = useState({
         urlsPokemons: nomesPokemons[0]
     })
