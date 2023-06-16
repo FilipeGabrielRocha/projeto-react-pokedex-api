@@ -1,10 +1,14 @@
-import './App.css';
-import { AppRoutes } from './pages/routes';
+import { AppRoutes } from "./pages/routes";
+import { PokemonList } from "./contexts/pokemons-context";
+
+import "./App.css";
 
 function App() {
   return (
     <div>
-      <AppRoutes />
+      <PokemonList>
+        <AppRoutes />
+      </PokemonList>
     </div>
   );
 }
