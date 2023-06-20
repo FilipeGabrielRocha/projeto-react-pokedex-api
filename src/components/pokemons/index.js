@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import "./index.css";
+
 async function limitPokemons(limite) {
   const api = "https://pokeapi.co/api/v2/";
   const response = await fetch(`${api}pokemon?limit=${limite}`);
@@ -16,7 +18,7 @@ const pokemonsDetalhes = async (pokemonNome) => {
 
 export const PokemonsList = () => {
   const [pokemon, setPokemon] = useState({
-    limite: 10,
+    limite: 3,
     pokemonsList: [],
   });
 
@@ -37,7 +39,7 @@ export const PokemonsList = () => {
       console.log(detalhesPokemons);
 
       setPokemon({
-        limite: 10,
+        limite: 3,
         pokemonsList: detalhesPokemons,
       });
     }
@@ -46,17 +48,25 @@ export const PokemonsList = () => {
   }, [pokemon.limite]);
 
   return (
-    <section>
-      <h1>Listagem de Pokemons</h1>
-      <ul>
+    <section className="pokemons-container">
+      <ul className="pokemons-lista">
         {pokemon.pokemonsList.map((pokemon, index) => {
           return (
-            <li key={index}>
-                <img src={pokemon.sprites.front_default} alt={`imagem ${pokemon.name}`} />
-              <p>{pokemon.name}</p>
+            <li className="pokemons-pokemon" key={index}>
+              <img
+                src={pokemon.sprites.front_default}
+                alt={`imagem ${pokemon.name}`}
+              />
+              <div>
+                <p className="pokemons-nome">{pokemon.name}</p>
+                <p className="pokemons-tipo">{pokemon.types[index]}</p>
+              </div>
             </li>
           );
         })}
+        <div className="pokemons-pokemon">
+          <p className="pokemons-nome">Carregar mais</p>
+        </div>
       </ul>
     </section>
   );

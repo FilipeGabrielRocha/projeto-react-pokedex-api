@@ -1,0 +1,25 @@
+.pokemons-container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.pokemons-lista {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1100px;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pokemons-pokemon {
+    display: flex;
+    align-items: center;
+    background-color: #E0E0FF;
+}
+
+.pokemons-nome {
+    text-transform: capitalize;
+}
