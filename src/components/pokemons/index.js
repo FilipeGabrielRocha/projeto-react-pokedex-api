@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import "./index.css";
+import { Link } from "react-router-dom";
 
 async function limitPokemons(limite) {
   const api = "https://pokeapi.co/api/v2/";
@@ -18,7 +19,7 @@ const pokemonsDetalhes = async (pokemonNome) => {
 
 export const PokemonsList = () => {
   const [pokemon, setPokemon] = useState({
-    limite: 3,
+    limite: 10,
     pokemonsList: [],
   });
 
@@ -39,7 +40,7 @@ export const PokemonsList = () => {
       console.log(detalhesPokemons);
 
       setPokemon({
-        limite: 3,
+        limite: 10,
         pokemonsList: detalhesPokemons,
       });
     }
@@ -52,16 +53,27 @@ export const PokemonsList = () => {
       <ul className="pokemons-lista">
         {pokemon.pokemonsList.map((pokemon, index) => {
           return (
-            <li className="pokemons-pokemon" key={index}>
-              <img
-                src={pokemon.sprites.front_default}
-                alt={`imagem ${pokemon.name}`}
-              />
-              <div>
-                <p className="pokemons-nome">{pokemon.name}</p>
-                <p className="pokemons-tipo">{pokemon.types[index]}</p>
-              </div>
-            </li>
+            <Link key={index}>
+              <li className="pokemons-pokemon" key={index}>
+                <div className="pokemons-detalhes">
+                  <div className="pokemons-nomes-tipos">
+                    <p className="pokemons-nome">{pokemon.name}</p>
+                    {pokemon.types.map((tipos, index) => {
+                      return (
+                        <p className="pokemons-tipos" key={index}>
+                          {tipos.type.name}
+                        </p>
+                      );
+                    })}
+                  </div>
+                </div>
+                <img
+                  className="pokemons-imagem"
+                  src={pokemon.sprites.front_default}
+                  alt={`imagem ${pokemon.name}`}
+                />
+              </li>
+            </Link>
           );
         })}
         <div className="pokemons-pokemon">
