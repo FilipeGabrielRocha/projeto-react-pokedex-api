@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-
-import "./index.css";
 import { Link } from "react-router-dom";
 
+import "./index.css";
+
+import { BotaoCarregarMais } from "../botao-carregar-mais";
+
 async function limitPokemons(limite) {
+  // const limite = 10
   const api = "https://pokeapi.co/api/v2/";
   const response = await fetch(`${api}pokemon?limit=${limite}`);
   const data = await response.json();
@@ -17,15 +20,19 @@ const pokemonsDetalhes = async (pokemonNome) => {
   return data;
 };
 
+const setLimite = (limite) => {
+  return limite += 10
+}
+
 export const PokemonsList = () => {
   const [pokemon, setPokemon] = useState({
-    limite: 10,
+    limite: [],
     pokemonsList: [],
   });
 
   useEffect(() => {
     async function fetchData() {
-      const data = await limitPokemons(pokemon.limite);
+      const data = await limitPokemons(setLimite(pokemon.limite));
       const nomesPokemons = data.map((pokemon) => {
         return pokemon.name;
       });
@@ -40,13 +47,22 @@ export const PokemonsList = () => {
       console.log(detalhesPokemons);
 
       setPokemon({
-        limite: 10,
+        limite: setLimite(pokemon.limite),
         pokemonsList: detalhesPokemons,
       });
     }
 
     fetchData();
-  }, [pokemon.limite]);
+  }, []);
+
+  const testeDeFuncao = (limite, detalhesPokemons) => {
+    console.log(`O limite é: ${limite}`);
+    setPokemon({
+      limite: limite + 10,
+      pokemonsList: detalhesPokemons
+    })
+    console.log(`Agora o limite é: ${limite}`);
+  }
 
   return (
     <section className="pokemons-container">
@@ -76,9 +92,7 @@ export const PokemonsList = () => {
             </Link>
           );
         })}
-        <div className="pokemons-pokemon">
-          <p className="pokemons-nome">Carregar mais</p>
-        </div>
+        <BotaoCarregarMais detalhesPokemons={pokemon.pokemonsList} limite={pokemon.limite} CarregarMais={testeDeFuncao}/>
       </ul>
     </section>
   );
