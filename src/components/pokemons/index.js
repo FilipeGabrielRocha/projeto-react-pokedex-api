@@ -20,19 +20,21 @@ const pokemonsDetalhes = async (pokemonNome) => {
   return data;
 };
 
-const setLimite = (limite) => {
-  return limite += 10
+const setLimite = () => {
+  const limite = 10
+  return limite
 }
 
 export const PokemonsList = () => {
   const [pokemon, setPokemon] = useState({
-    limite: [],
+    limite: 0,
     pokemonsList: [],
   });
 
   useEffect(() => {
     async function fetchData() {
-      const data = await limitPokemons(setLimite(pokemon.limite));
+      const limitePokemons = setLimite()
+      const data = await limitPokemons(limitePokemons);
       const nomesPokemons = data.map((pokemon) => {
         return pokemon.name;
       });
@@ -47,7 +49,7 @@ export const PokemonsList = () => {
       console.log(detalhesPokemons);
 
       setPokemon({
-        limite: setLimite(pokemon.limite),
+        limite: limitePokemons,
         pokemonsList: detalhesPokemons,
       });
     }
@@ -59,7 +61,7 @@ export const PokemonsList = () => {
     console.log(`O limite é: ${limite}`);
     setPokemon({
       limite: limite + 10,
-      pokemonsList: detalhesPokemons
+      pokemonsList: detalhesPokemons,
     })
     console.log(`Agora o limite é: ${limite}`);
   }
