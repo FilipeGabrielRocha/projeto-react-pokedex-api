@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-// import "./index.css";
+import "./index.css";
 
 import { BotaoCarregarMais } from "../botao-carregar-mais";
 
@@ -89,13 +89,13 @@ export const PokemonsList = () => {
         {pokemon.pokemonsList.map((pokemon, index) => {
           return (
             <Link key={index}>
-              <PokemonsPokemon key={index}>
+              <PokemonsPokemon className={["type_" + pokemon.types[0].type.name]} key={index}>
                 <PokemonsDetalhes>
                   <PokemonsNomesTipos>
                     <PokemonsNome>{pokemon.name}</PokemonsNome>
                     {pokemon.types.map((tipos, index) => {
                       return (
-                        <PokemonsTipos key={index}>
+                        <PokemonsTipos className={["type_" + tipos.type.name]} key={index}>
                           {tipos.type.name}
                         </PokemonsTipos>
                       );
@@ -148,7 +148,7 @@ const PokemonsPokemon = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(199, 0, 0);
+  // background-color: rgb(199, 0, 0);
   box-shadow: #32325d40 0px 30px 60px -12px inset,
     #0000004d 0px 18px 36px -18px inset;
   height: 160px;
@@ -189,16 +189,19 @@ const PokemonsTipos = styled.p`
   align-self: flex-start;
   padding: 3px 10px;
   font-size: 1.3rem;
+  font-weight: bold;
   margin-top: 5px;
   text-transform: capitalize;
-  background-color: #4d4d4d;
   border-radius: 9px;
   color: #ffffff;
-  border: 1px solid #ffffff;
+  background-color: #c4c4c471;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 
 const PokemonsImagem = styled.img`
   position: absolute;
-  top: 50px;
-  right: 30px;
+  top: 13px;
+  right: -3px;
+  width: 150px;
 `;
