@@ -5,6 +5,7 @@ import styled from "styled-components";
 import "./index.css";
 
 import { BotaoCarregarMais } from "../botao-carregar-mais";
+import { BarraDeNavegacao } from "../barra-de-navegacao";
 
 async function limitPokemons(limite) {
   const api = "https://pokeapi.co/api/v2/";
@@ -46,8 +47,6 @@ export const PokemonsList = () => {
         detalhesPokemons.push(detalhes);
       }
 
-      console.log(detalhesPokemons);
-
       setPokemon({
         limite: limitePokemons,
         pokemonsList: detalhesPokemons,
@@ -76,8 +75,6 @@ export const PokemonsList = () => {
         limite: limitePokemons,
         pokemonsList: detalhesPokemons,
       });
-
-      console.log(detalhesPokemons);
     }
 
     fetchData();
@@ -85,10 +82,11 @@ export const PokemonsList = () => {
 
   return (
     <Section>
+      <BarraDeNavegacao />
       <PokemonsLista>
         {pokemon.pokemonsList.map((pokemon, index) => {
           return (
-            <Link key={index}>
+            <Link key={index} to={"/pokemon-detalhe"}>
               <PokemonsPokemon className={["type_" + pokemon.types[0].type.name]} key={index}>
                 <PokemonsDetalhes>
                   <PokemonsNomesTipos>
@@ -121,6 +119,10 @@ export const PokemonsList = () => {
 
 const Section = styled.section`
   display: flex;
+  flex-wrap:wrap;
+  position: relative;
+  max-width: 1920px;
+  margin: 0 auto;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
@@ -129,7 +131,6 @@ const Section = styled.section`
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
 `;
 
 const PokemonsLista = styled.ul`
@@ -148,14 +149,13 @@ const PokemonsPokemon = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  // background-color: rgb(199, 0, 0);
   box-shadow: #32325d40 0px 30px 60px -12px inset,
     #0000004d 0px 18px 36px -18px inset;
   height: 160px;
   width: 250px;
   padding: 20px;
   border-radius: 25px;
-  border: none;
+  border: 2px solid #2B3050;
   cursor: pointer;
   position: relative;
   transition: 0.3s ease-in-out;
@@ -196,7 +196,6 @@ const PokemonsTipos = styled.p`
   color: #ffffff;
   background-color: #c4c4c471;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 
 const PokemonsImagem = styled.img`

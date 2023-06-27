@@ -1,0 +1,8 @@
+section {
+    background-color: #2b3050;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

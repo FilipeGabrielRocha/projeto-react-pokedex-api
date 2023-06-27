@@ -12,14 +12,14 @@ const PokemonsPokemon = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(199, 0, 0);
+  background-color: #BE2414;
   box-shadow: #32325d40 0px 30px 60px -12px inset,
     #0000004d 0px 18px 36px -18px inset;
   height: 160px;
   width: 250px;
   padding: 20px;
   border-radius: 25px;
-  border: none;
+  border: 2px solid #2B3050;
   cursor: pointer;
   position: relative;
   transition: 0.3s ease-in-out;
