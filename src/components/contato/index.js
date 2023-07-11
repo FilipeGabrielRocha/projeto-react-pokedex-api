@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import "./index.css";
-
 export const Contato = () => {
   return (
     <Section>

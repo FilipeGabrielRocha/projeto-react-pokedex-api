@@ -131,6 +131,21 @@ const Section = styled.section`
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  *::-webkit-scrollbar {
+    width: 14px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #b21613;
+    border-radius: 20px;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    border: 3px solid #b21613;
+  }
 `;
 
 const PokemonsLista = styled.ul`
@@ -155,7 +170,6 @@ const PokemonsPokemon = styled.li`
   width: 250px;
   padding: 20px;
   border-radius: 25px;
-  border: 2px solid #2B3050;
   cursor: pointer;
   position: relative;
   transition: 0.3s ease-in-out;
