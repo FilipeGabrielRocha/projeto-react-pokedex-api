@@ -6,7 +6,6 @@ import { BotaoGenerico } from "../botao-generico";
 export const AlternadorTemas = () => {
 
     const { temas } = useContext(ThemeContext)
-    console.log('AlternadorTemas', temas);
 
     return (
         <div>
