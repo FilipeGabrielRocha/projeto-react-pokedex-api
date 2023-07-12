@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { Link } from "react-router-dom";
+import { AlternadorTemas } from "../alternador-temas";
 
 export const BarraDeNavegacao = () => {
   return (
@@ -21,6 +22,7 @@ export const BarraDeNavegacao = () => {
           <LiContato>Contato</LiContato>
         </Link>
       </ul>
+      <AlternadorTemas />
     </Header>
   );
 };
