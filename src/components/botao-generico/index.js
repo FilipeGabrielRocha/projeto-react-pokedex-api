@@ -1,11 +1,9 @@
-import React, { useContext } from "react"
-import { ThemeContext } from "../../contexts/tema-contexto"
+import React, { useContext } from "react";
+import { ThemeContext } from "../../contexts/tema-contexto";
 
 export const BotaoGenerico = (props) => {
+  const { temas } = useContext(ThemeContext);
+  console.log("BotaoGenerico - temas", temas);
 
-    const { temas } = useContext(ThemeContext)
-
-    return (
-        <button {...props} />
-    )
-}
+  return <span {...props} />;
+};

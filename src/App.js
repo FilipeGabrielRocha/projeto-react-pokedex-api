@@ -1,4 +1,3 @@
-import { AlternadorTemas } from "./components/alternador-temas";
 import { ThemeProvider } from "./contexts/tema-contexto";
 
 import { AppRoutes } from "./pages/routes";
@@ -31,6 +30,10 @@ const GlobalStyle = createGlobalStyle`
   html {
       font-size: 62.5%;
       font-family: 'Montserrat', sans-serif;
+  }
+
+  body {
+    transition: background .2s linear;
   }
 `;
 

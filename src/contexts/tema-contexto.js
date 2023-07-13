@@ -2,7 +2,7 @@ import { createContext } from "react"
 
 export const temas = {
     light: {
-        
+        backgroundImage: "../../public/img/fundo-principal.jpg",
     },
     dark: {
 

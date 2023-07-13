@@ -158,6 +158,7 @@ const PokemonsLista = styled.ul`
   height: 545px;
   gap: 20px;
   overflow-y: auto;
+  margin-top: 80px;
 `;
 
 const PokemonsPokemon = styled.li`

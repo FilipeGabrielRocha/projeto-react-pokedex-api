@@ -17,12 +17,14 @@ export const BarraDeNavegacao = () => {
           name="value"
         />
       </div>
-      <ul>
-        <Link to={"/contatos"}>
-          <LiContato>Contato</LiContato>
-        </Link>
-      </ul>
-      <AlternadorTemas />
+      <ContatoAlternadorTema>
+        <ul>
+          <Link to={"/contatos"}>
+            <LiContato>Contato</LiContato>
+          </Link>
+        </ul>
+        <AlternadorTemas />
+      </ContatoAlternadorTema>
     </Header>
   );
 };
@@ -32,10 +34,11 @@ const Header = styled.header`
   position: absolute;
   top: 0;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100vw;
   height: 85px;
   background-color: #b21613;
+  padding: 0px 25px;
 `;
 
 const Logo = styled.img`
@@ -70,4 +73,10 @@ const LiContato = styled.li`
     color: #2b3050;
     border-radius: 50px;
   }
+`;
+
+const ContatoAlternadorTema = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 40px;
 `;
