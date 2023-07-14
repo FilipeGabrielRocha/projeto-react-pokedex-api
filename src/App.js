@@ -7,8 +7,8 @@ import { createGlobalStyle } from "styled-components";
 function App() {
   return (
     <div>
-      <GlobalStyle />
       <ThemeProvider>
+        <GlobalStyle />
         <AppRoutes />
       </ThemeProvider>
     </div>

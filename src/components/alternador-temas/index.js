@@ -1,18 +1,17 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import { ThemeContext } from "../../contexts/tema-contexto";
+import { ThemeContext, temas } from "../../contexts/tema-contexto";
 import { BotaoGenerico } from "../botao-generico";
 
 import "./index.css"
 
 export const AlternadorTemas = () => {
-  const { temas } = useContext(ThemeContext);
-  console.log("AlternadorTemas - temas", temas);
+  const { tema, setTema } = useContext(ThemeContext);
 
   return (
     <div>
-      <BotaoGenerico>
+      <BotaoGenerico onClick={() => setTema(tema === temas.light ? temas.dark : temas.light)}>
         <Checkbox className="checkbox" type="checkbox" id="chk" />
 
         <Label className="label" htmlFor="chk">

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "../../contexts/tema-contexto";
+
+import { ThemeContext, temas } from "../../contexts/tema-contexto";
 
 export const BotaoGenerico = (props) => {
-  const { temas } = useContext(ThemeContext);
-  console.log("BotaoGenerico - temas", temas);
+  const { tema, setTema } = useContext(ThemeContext);
+  console.log("BotaoGenerico - tema", tema);
 
-  return <span {...props} />;
+  return <span onClick={() => setTema(tema === temas.light ? temas.dark : temas.light)} {...props} />;
 };

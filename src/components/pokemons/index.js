@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import "./index.css";
+import backgroundImageLight from "../../assets/img/fundo-principal.png"
 
 import { BotaoCarregarMais } from "../botao-carregar-mais";
 import { BarraDeNavegacao } from "../barra-de-navegacao";
+import { ThemeContext } from "../../contexts/tema-contexto";
 
 async function limitPokemons(limite) {
   const api = "https://pokeapi.co/api/v2/";
@@ -27,6 +29,9 @@ const setLimite = () => {
 };
 
 export const PokemonsList = () => {
+
+  const { tema } = useContext(ThemeContext)
+
   const [pokemon, setPokemon] = useState({
     limite: 0,
     pokemonsList: [],
@@ -81,7 +86,7 @@ export const PokemonsList = () => {
   };
 
   return (
-    <Section>
+    <Section style={{backgroundColor: tema.backgroundColor}}>
       <BarraDeNavegacao />
       <PokemonsLista>
         {pokemon.pokemonsList.map((pokemon, index) => {
@@ -119,7 +124,7 @@ export const PokemonsList = () => {
 
 const Section = styled.section`
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   position: relative;
   max-width: 1920px;
   margin: 0 auto;
@@ -127,7 +132,7 @@ const Section = styled.section`
   align-items: center;
   justify-content: center;
 
-  background-image: url("../img/fundo-principal.jpg");
+  background-image: url(${require("../../assets/img/fundo-principal.png")});
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;

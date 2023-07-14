@@ -1,19 +1,22 @@
-import { createContext } from "react"
+import { createContext, useState } from "react"
 
 export const temas = {
     light: {
-        backgroundImage: "../../public/img/fundo-principal.jpg",
+        backgroundColor: "#fff",
     },
     dark: {
-
+        backgroundColor: "#2b3050",
     },
 }
 
 export const ThemeContext = createContext({})
 
 export const ThemeProvider = (props) => {
+
+    const [ tema, setTema ] = useState(temas.light)
+
     return (
-        <ThemeContext.Provider value={{temas}}>
+        <ThemeContext.Provider value={{tema, setTema}}>
             {props.children}
         </ThemeContext.Provider>
     )

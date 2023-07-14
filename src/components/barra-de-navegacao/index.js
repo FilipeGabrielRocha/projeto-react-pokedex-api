@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import logo from "../../assets/img/logo.png"
+
 import { Link } from "react-router-dom";
 import { AlternadorTemas } from "../alternador-temas";
 
@@ -7,7 +9,7 @@ export const BarraDeNavegacao = () => {
   return (
     <Header>
       <Link to={"/"}>
-        <Logo src="../img/logo.png" alt="Logo Pokemon" />
+        <Logo src={logo} alt="Logo Pokemon" />
       </Link>
       <div>
         <CaixaDeTexto
