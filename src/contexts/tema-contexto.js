@@ -2,7 +2,7 @@ import { createContext, useState } from "react"
 
 export const temas = {
     light: {
-        backgroundColor: "#fff",
+        backgroundColor: "#ffffff",
     },
     dark: {
         backgroundColor: "#2b3050",

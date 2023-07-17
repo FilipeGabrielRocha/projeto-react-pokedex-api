@@ -4,20 +4,19 @@ import styled from "styled-components";
 import { ThemeContext, temas } from "../../contexts/tema-contexto";
 import { BotaoGenerico } from "../botao-generico";
 
-import "./index.css"
-
 export const AlternadorTemas = () => {
   const { tema, setTema } = useContext(ThemeContext);
+  console.log('tema - alternadorTemas', tema);
 
   return (
     <div>
       <BotaoGenerico onClick={() => setTema(tema === temas.light ? temas.dark : temas.light)}>
-        <Checkbox className="checkbox" type="checkbox" id="chk" />
+        <Checkbox type="checkbox" id="chk" />
 
-        <Label className="label" htmlFor="chk">
+        <Label htmlFor="chk">
           <TamEmoticon>☀️</TamEmoticon>
           <TamEmoticon>🌙</TamEmoticon>
-          <Bola className="bola"></Bola>
+          <Bola></Bola>
         </Label>
       </BotaoGenerico>
     </div>
@@ -55,6 +54,10 @@ const Bola = styled.div`
   width: 22px;
   transform: translateX(0px);
   transition: transform 0.2s linear;
+
+  ${Checkbox}:checked + ${Label} & {
+    transform: translateX(24px);
+  }
 `;
 
 const TamEmoticon = styled.span`

@@ -2,9 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import "./index.css";
-import backgroundImageLight from "../../assets/img/fundo-principal.png"
-
 import { BotaoCarregarMais } from "../botao-carregar-mais";
 import { BarraDeNavegacao } from "../barra-de-navegacao";
 import { ThemeContext } from "../../contexts/tema-contexto";
@@ -29,8 +26,8 @@ const setLimite = () => {
 };
 
 export const PokemonsList = () => {
-
-  const { tema } = useContext(ThemeContext)
+  const { tema } = useContext(ThemeContext);
+  // console.log("pokemonslist", tema);
 
   const [pokemon, setPokemon] = useState({
     limite: 0,
@@ -86,19 +83,19 @@ export const PokemonsList = () => {
   };
 
   return (
-    <Section style={{backgroundColor: tema.backgroundColor}}>
+    <Section style={{ backgroundColor: tema.backgroundColor }}>
       <BarraDeNavegacao />
       <PokemonsLista>
         {pokemon.pokemonsList.map((pokemon, index) => {
           return (
             <Link key={index} to={"/pokemon-detalhe"}>
-              <PokemonsPokemon className={["type_" + pokemon.types[0].type.name]} key={index}>
+              <PokemonsPokemon>
                 <PokemonsDetalhes>
                   <PokemonsNomesTipos>
                     <PokemonsNome>{pokemon.name}</PokemonsNome>
                     {pokemon.types.map((tipos, index) => {
                       return (
-                        <PokemonsTipos className={["type_" + tipos.type.name]} key={index}>
+                        <PokemonsTipos key={index}>
                           {tipos.type.name}
                         </PokemonsTipos>
                       );
@@ -140,14 +137,14 @@ const Section = styled.section`
   *::-webkit-scrollbar {
     width: 14px;
   }
-  
+
   *::-webkit-scrollbar-track {
     background: #b21613;
     border-radius: 20px;
   }
-  
+
   *::-webkit-scrollbar-thumb {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 20px;
     border: 3px solid #b21613;
   }
@@ -175,6 +172,14 @@ const PokemonsPokemon = styled.li`
   height: 160px;
   width: 250px;
   padding: 20px;
+  background: rgb(34, 255, 0);
+  background: linear-gradient(
+    135deg,
+    rgba(35, 210, 8, 1) 0%,
+    rgba(10, 230, 209, 1) 35%,
+    rgba(203, 9, 231, 1) 100%
+  );
+  border: 5px solid #bab8b5;
   border-radius: 25px;
   cursor: pointer;
   position: relative;
@@ -188,7 +193,7 @@ const PokemonsPokemon = styled.li`
 const PokemonsDetalhes = styled.div`
   display: flex;
   position: absolute;
-  left: 30px;
+  left: 20px;
   top: 35px;
 `;
 
@@ -219,8 +224,9 @@ const PokemonsTipos = styled.p`
 `;
 
 const PokemonsImagem = styled.img`
+  display: flex;
   position: absolute;
   top: 13px;
-  right: -3px;
+  right: -8px;
   width: 150px;
 `;

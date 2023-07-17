@@ -1,3 +1,0 @@
-.checkbox:checked + .label .bola{
-    transform: translateX(24px);
-}
