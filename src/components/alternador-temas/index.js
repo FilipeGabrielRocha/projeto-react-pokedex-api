@@ -10,8 +10,8 @@ export const AlternadorTemas = () => {
 
   return (
     <div>
-      <BotaoGenerico onClick={() => setTema(tema === temas.light ? temas.dark : temas.light)}>
-        <Checkbox type="checkbox" id="chk" />
+      <BotaoGenerico>
+        <Checkbox onClick={() => setTema(tema === temas.light ? temas.dark : temas.light)} type="checkbox" id="chk" />
 
         <Label htmlFor="chk">
           <TamEmoticon>☀️</TamEmoticon>

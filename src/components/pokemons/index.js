@@ -27,7 +27,6 @@ const setLimite = () => {
 
 export const PokemonsList = () => {
   const { tema } = useContext(ThemeContext);
-  // console.log("pokemonslist", tema);
 
   const [pokemon, setPokemon] = useState({
     limite: 0,
