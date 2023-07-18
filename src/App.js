@@ -1,17 +1,14 @@
 import { ThemeProvider } from "./contexts/tema-contexto";
 
 import { AppRoutes } from "./pages/routes";
-
 import { createGlobalStyle } from "styled-components";
 
 function App() {
   return (
-    <div>
-      <ThemeProvider>
-        <GlobalStyle />
-        <AppRoutes />
-      </ThemeProvider>
-    </div>
+    <ThemeProvider>
+      <GlobalStyle />
+      <AppRoutes />
+    </ThemeProvider>
   );
 }
 

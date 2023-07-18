@@ -8,9 +8,9 @@ export const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route extac path="/" element={<Pokemons />} />
-        <Route extac path="/contatos" element={<PaginaContatos />} />
-        <Route extac path="/pokemon-detalhe" element={<PokemonsDetalhes />} />
+        <Route extac path="/" element={<Pokemons />}/>
+        <Route extac path="/contatos" element={<PaginaContatos />}/>
+        <Route extac path="/pokemon-detalhe/:id" element={<PokemonsDetalhes />}/>
       </Routes>
     </BrowserRouter>
   );

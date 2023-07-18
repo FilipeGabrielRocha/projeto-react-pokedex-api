@@ -87,7 +87,7 @@ export const PokemonsList = () => {
       <PokemonsLista>
         {pokemon.pokemonsList.map((pokemon, index) => {
           return (
-            <Link key={index} to={"/pokemon-detalhe"}>
+            <Link key={index} to={`/pokemon-detalhe/${pokemon.id}`}>
               <PokemonsPokemon>
                 <PokemonsDetalhes>
                   <PokemonsNomesTipos>
@@ -192,8 +192,8 @@ const PokemonsPokemon = styled.li`
 const PokemonsDetalhes = styled.div`
   display: flex;
   position: absolute;
-  left: 20px;
-  top: 35px;
+  left: 15px;
+  top: 15px;
 `;
 
 const PokemonsNomesTipos = styled.div`
@@ -225,7 +225,7 @@ const PokemonsTipos = styled.p`
 const PokemonsImagem = styled.img`
   display: flex;
   position: absolute;
-  top: 13px;
-  right: -8px;
+  top: 10px;
+  right: -10px;
   width: 150px;
 `;
